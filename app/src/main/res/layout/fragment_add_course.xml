@@ -35,7 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:text="@string/add_course_text"
-        android:onClick="addCourse" />
+        android:onClick="addCourse"
+        android:id="@+id/add_course_button"/>
 
 
 </LinearLayout>

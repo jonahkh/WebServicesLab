@@ -44,6 +44,7 @@ public class Course implements Serializable {
                 JSONArray arr = new JSONArray(courseJSON);
 
                 for (int i = 0; i < arr.length(); i++) {
+                    Log.e("JSONN", arr.getJSONObject(i).toString());
                     JSONObject obj = arr.getJSONObject(i);
                     Course course = new Course(obj.getString(Course.ID), obj.getString(Course.SHORT_DESC)
                             , obj.getString(Course.LONG_DESC), obj.getString(Course.PRE_REQS));

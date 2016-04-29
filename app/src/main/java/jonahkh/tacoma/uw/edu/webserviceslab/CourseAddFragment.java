@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,7 +22,7 @@ import java.net.URLEncoder;
 public class CourseAddFragment extends Fragment {
     private CourseAddListener mListener;
     private final static String COURSE_ADD_URL
-            = "http://cssgate.insttech.washington.edu/~uwnetid/addCourse.php?";
+            = "http://cssgate.insttech.washington.edu/~jonahkh/addCourse.php?";
     private EditText mCourseIdEditText;
     private EditText mCourseShortDescEditText;
     private EditText mCourseLongDescEditText;
@@ -45,6 +46,15 @@ public class CourseAddFragment extends Fragment {
         FloatingActionButton floatingActionButton = (FloatingActionButton)
                 getActivity().findViewById(R.id.fab);
         floatingActionButton.hide();
+        Button addCourseButton = (Button) v.findViewById(R.id.add_course_button);
+        addCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = buildCourseURL(v);
+                mListener.addCourse(url);
+            }
+        });
+
         return v;
     }
 
@@ -78,6 +88,7 @@ public class CourseAddFragment extends Fragment {
         catch(Exception e) {
             Toast.makeText(v.getContext(), "Something wrong with the url" + e.getMessage(), Toast.LENGTH_LONG)
                     .show();
+            Log.e("WRX2", "exception thrown");
         }
         return sb.toString();
     }
